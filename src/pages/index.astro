@@ -1,1 +1,223 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
 
+<img src="/billederper/Headerforside.png" alt="3223">
+
+<div class="lilleskaemlayout">
+<div class="vinylunivers">
+	<h2>Gå på opdagelse i vores vinylunivers</h2>
+	<p>Klik ind på Vinyl-siden og find alt fra klassikere til skjulte skatte – second hand, håndplukket og klar til dine pladehylder.</p>
+	<img src="/billederper/pilfrem.png" alt="3223">
+</div>
+
+<img class="plader" src="/billederper/pladerbilleder.png" alt="2322">
+<div class="livemusik">
+	<h2>Oplev musikken live</h2>
+	<p>Amager Records afholder intime koncerter med lokale og upcoming artister – tæt på musikken, stemningen og fællesskabet..</p>
+	<img src="/billederper/pilfrem.png" alt="3223">
+</div>
+</div>
+
+
+
+<div class="storskaermlayout">
+	<img class="plader" src="/billederper/pladerbilleder.png" alt="2322">
+	<div class="vinylunivers">
+		<h2>Gå på opdagelse i vores vinylunivers</h2>
+		<p>Klik ind på Vinyl-siden og find alt fra klassikere til skjulte skatte – second hand, håndplukket og klar til dine pladehylder.</p>
+		<img src="/billederper/pilfrem.png" alt="3223">
+	</div>
+	
+	<img class="livemusikbillede" src="/billederper/livemusik.png" alt="23232">
+	<div class="livemusik">
+		<h2>Oplev musikken live</h2>
+		<p>Amager Records afholder intime koncerter med lokale og upcoming artister – tæt på musikken, stemningen og fællesskabet..</p>
+		<img src="/billederper/pilfrem.png" alt="3223">
+	</div>
+</div>
+
+
+
+
+
+<h1 class="udvalgte">Udvalgte plader</h1>
+
+<div class="pladergrid">
+	<div>
+		<img src="/billederper/cc.png" alt="232">
+		<p class="album">Bloody Tourist</p>
+		<p class="kategori">LP, Album, Gat</p>
+		<p class="kunstner">10cc</p>
+		<p class="pris">135 kr</p>
+
+	</div>
+	<div>
+		<img src="/billederper/cc.png" alt="232">
+		<p class="album">Bloody Tourist</p>
+		<p class="kategori">LP, Album, Gat</p>
+		<p class="kunstner">10cc</p>
+		<p class="pris">150 kr</p>
+
+	</div>
+	<div>
+		<img src="/billederper/cc.png" alt="232">
+		<p class="album">Bloody Tourist</p>
+		<p class="kategori">LP, Album, Gat</p>
+		<p class="kunstner">10cc</p>
+		<p class="pris">150 kr</p>
+
+	</div>
+	<div>
+		<img src="/billederper/cc.png" alt="232">
+		<p class="album">Bloody Tourist</p>
+		<p class="kategori">LP, Album, Gat</p>
+		<p class="kunstner">10cc</p>
+		<p class="pris">695 kr</p>
+
+	</div>
+</div>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.vinylunivers {
+  background-color: #CFDBF1;
+  margin: 3rem auto; 
+  max-width: 300px;
+  padding: 1rem; 
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.vinylunivers h2 {
+  margin-bottom: 1rem;
+}
+
+.vinylunivers p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.vinylunivers img {
+  max-width: 70px;
+  margin: auto;
+}
+.plader{
+max-width: 500px;
+margin: auto;
+}
+
+
+.livemusik{
+background-color: #CFDBF1;
+  margin: 3rem auto; 
+  max-width: 300px;
+  padding: 1rem; 
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;	
+}
+.livemusik h2 {
+  margin-bottom: 1rem;
+}
+
+.livemusik p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.livemusik img {
+  max-width: 70px;
+  margin: auto;
+}
+.pladergrid{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 30px;
+	margin-top: 1rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+.udvalgte{
+	margin-left: 1rem;
+}
+
+.album{
+	padding-top: 0.5rem;
+	font-size: 1.4rem;
+}
+.kategori{
+	padding-top: 0.5rem;
+	font-size: 1.1rem;
+}
+.kunstner{
+	padding-top: 0.1rem;
+	font-size: 1.1rem;
+}
+.pris{
+	padding-top: 0.5rem;
+	font-size: 1.6rem;
+}
+@media (max-width: 800px) {
+	.storskaermlayout{
+		display: none;
+	}
+}
+
+@media (min-width: 800px) {
+
+  .pladergrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+.lilleskaemlayout{
+	display: none;
+}
+.storskaermlayout{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	position: relative;
+	margin-bottom: 9rem;
+}
+.plader{
+max-width: 100%;
+grid-column: 1/3;
+margin-top: 3rem;
+margin-left: 3rem;
+
+}
+.vinylunivers{
+	position: absolute;
+	grid-column: 2/4;
+	top:30%;
+	left: 30%;
+
+}
+.livemusikbillede{
+	max-width: 100%;
+	grid-row: 2/4;
+	grid-column: 2/4;
+	margin-top: 15rem;
+	padding-right: 3rem;
+
+}
+
+.livemusik{
+	position: absolute;
+top: 10%;
+right: 50%;
+grid-column: 1/4;
+grid-row: 3/4;
+margin-top: 8rem;
+
+}
+
+}
+
+</style>
