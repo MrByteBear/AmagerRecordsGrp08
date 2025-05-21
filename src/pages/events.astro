@@ -2,7 +2,47 @@
 import "../styles/globalStyle.css";
 import Layout from "../layouts/Layout.astro";
 ---
+
 <Layout title="Tester Title">
-  <h1>Hello World</h1>
-  <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt est et lobortis interdum. Sed nisi lacus, sed viverra tellus in hac habitasse platea dictumst.</p>
+  <img src="/img/event_top_billede.png" alt="" />
+  <div class="top">
+    <h1>Events, koncerter og god stemning</h1>
+    <p>Hos Amager Records er butikken meget mere end bare en pladeforretning. Vi elsker at skabe liv og lyd omkring musikken, og derfor afholder vi løbende små, intime events – lige fra akustiske koncerter og DJ-aftener til pladebørser, releasefester og spontane pop-up arrangementer.</p>
+  </div>
+  <div class="midt">
+    <div class="midt_text">
+      <h1>Direkte fra hjertet af Amager</h1>
+      <p>Det er de dage og aftener, hvor vinylerne snurrer, folk samles over en øl eller en kop kaffe, og der opstår noget særligt mellem musikere, gæster og nysgerrige sjæle.</p>
+      <p>Uanset om du er stamgæst eller førstegangsbesøgende, er du altid velkommen.</p>
+    </div>
+    <img src="/img/event_midt_billede.png" alt="" />
+  </div>
+
+  <div class="bund">
+    <img src="/img/event_bund_billede.png" alt="" />
+
+    <div class="bund_text">
+      <h1>Direkte fra hjertet af Amager</h1>
+      <p>Det er de dage og aftener, hvor vinylerne snurrer, folk samles over en øl eller en kop kaffe, og der opstår noget særligt mellem musikere, gæster og nysgerrige sjæle.</p>
+      <p>Uanset om du er stamgæst eller førstegangsbesøgende, er du altid velkommen.</p>
+    </div>
+  </div>
+
+  <style>
+    .top {
+      text-align: center;
+    }
+
+    @media (min-width: 800px) {
+      .midt {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .bund {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 </Layout>
