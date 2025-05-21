@@ -3,26 +3,107 @@ import "../styles/globalStyle.css";
 import Layout from "../layouts/Layout.astro";
 ---
 <Layout title="Tester Title">
-<h1>Nevermind</h1>
-<img src="/img/Nevermind.png" alt="322">
-<div class="tekstboks">
-<p>LP, Album</p>
-<p>Nirvana</p>
-<p>Media: Very Good Plus</p>
-<p>Sleve: Very Good Plus</p>
-<p>1195 kr</p>
-<a href="">Læg i vogn</a>
+  <div class="gridstorskaerm">
+    <div class="overskriftogbillede">
+  <h1>Nevermind - Nirvana</h1>
+  <img src="/img/Nevermind.png" alt="322">
 </div>
-  </Layout>
 
-  <style>
-.tekstboks{
+ <div>
+    <div class="tekstboks">
+      <div class="info-rækker">
+        <div class="venstre-kolonne">
+          <p>LP, Album</p>
+          <p>Nirvana</p>
+        </div>
+        <div class="højre-kolonne">
+          <p>Media: Very Good Plus</p>
+          <p>Sleeve: Very Good Plus</p>
+        </div>
+      </div>
+  
+      <div class="prisogvogn">
+        <p class="pris">1195 kr</p>
+        <a href="">Læg i vogn</a>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+</Layout>
+
+<style>
+
+
+.tekstboks {
   background-color: #CFDBF1;
-  
-  padding-left: 2rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  
+  padding: 2rem 3rem;
+  margin: 2rem auto;     
+  max-width: 550px;          
 }
+
+.prisogvogn{
+  justify-items: center;
+  margin-top: 2rem;
+}
+
+a{
+  background-color: black;
+  color: white;
+  margin-top: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+.pris{
+  margin-bottom: 1rem;
+}
+
+.info-rækker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+img{
+  justify-self: center;
+  width: 500px;
+  margin-top: 1rem;
+}
+
+
+h1{
+  justify-self: center;
+  max-width: 400px;
+
+}
+p{
+  font-size: 1.3rem;
+}
+
+@media (min-width: 800px) {
+  .gridstorskaerm{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
   
-  </style>
+  img{
+    width: 100%;
+  }
+  h1{
+    justify-self: left;
+  }
+.tekstboks {
+ align-self: center;
+ margin-top: 20rem;
+
+}
+
+}
+
+
+</style>
+
+
+
