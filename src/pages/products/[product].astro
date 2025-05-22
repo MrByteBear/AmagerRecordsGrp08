@@ -1,12 +1,36 @@
 ---
-import "../styles/globalStyle.css";
-import Layout from "../layouts/Layout.astro";
+import "../../styles/globalStyle.css";
+
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const url = "https://gxmdglbibfpiwogwemde.supabase.co/rest/v1/Shop";
+  const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4bWRnbGJpYmZwaXdvZ3dlbWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMzEyMzIsImV4cCI6MjA2MjcwNzIzMn0.BvX0BmkEeCJXM87A6rCzVi7tqiTnfB--7qAfPqe6UT0";
+
+  const options = {
+    headers: {
+      apikey: key,
+    },
+  };
+
+  const request = await fetch(url, options);
+  const data = await request.json();
+
+  return data.map((item) => {
+    return {
+      params: { product: item.slug },
+      props: { item },
+    };
+  });
+}
+const { item } = Astro.props;
+
 ---
-<Layout title="Tester Title">
+<Layout title={`${item.Albumtitel}`}>
+  <h1>{item.Albumtitel}- {item.Kunstner}</h1>
   <div class="gridstorskaerm">
     <div class="overskriftogbillede">
-  <h1>Nevermind - Nirvana</h1>
-  <img src="/img/Nevermind.png" alt="322">
+  <img src={item.Image} alt=`Image of ${item.Albumtitel}` />
 </div>
 
  <div>
@@ -14,16 +38,16 @@ import Layout from "../layouts/Layout.astro";
       <div class="info-rækker">
         <div class="venstre-kolonne">
           <p>LP, Album</p>
-          <p>Nirvana</p>
+          <p>{item.Kunstner}</p>
         </div>
         <div class="højre-kolonne">
-          <p>Media: Very Good Plus</p>
-          <p>Sleeve: Very Good Plus</p>
+          <p>Media: {item.Pladecondition}</p>
+          <p>Sleeve: {item.Sleevecondition}</p>
         </div>
       </div>
   
       <div class="prisogvogn">
-        <p class="pris">1195 kr</p>
+        <p class="pris">{item.Pris} kr</p>
         <a href="">Læg i vogn</a>
       </div>
     </div>
@@ -56,6 +80,7 @@ a{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   font-size: 1.3rem;
+  cursor: pointer;
 }
 .pris{
   margin-bottom: 1rem;
@@ -74,7 +99,7 @@ img{
 
 h1{
   justify-self: center;
-  max-width: 400px;
+  max-width: 800px;
 
 }
 p{
@@ -93,6 +118,7 @@ p{
   }
   h1{
     justify-self: left;
+    max-width: 1000px;
   }
 .tekstboks {
  align-self: center;
@@ -105,45 +131,59 @@ p{
 }
 
 }
-@media (min-width: 1200px) and (max-width: 1300px) {
+@media (min-width: 1400px) and (max-width: 1500px) {
   .tekstboks {
  align-self: center;
- margin-top: 14rem;
+ margin-top: 15.5rem;
 
 }
 }
-@media (min-width: 1100px) and (max-width: 1200px) {
+@media (min-width: 1300px) and (max-width: 1400px) {
+  .tekstboks {
+ align-self: center;
+ margin-top: 13rem;
+
+}
+}
+@media (min-width: 1200px) and (max-width: 1300px) {
   .tekstboks {
  align-self: center;
  margin-top: 12rem;
 
 }
 }
+@media (min-width: 1100px) and (max-width: 1200px) {
+  .tekstboks {
+ align-self: center;
+ margin-top: 10rem;
+
+}
+}
 @media (min-width: 1000px) and (max-width: 1100px) {
-  .tekstboks {
- align-self: center;
- margin-top: 9rem;
-
-}
-}
-@media (min-width: 900px) and (max-width: 1000px) {
-  .tekstboks {
- align-self: center;
- margin-top: 8rem;
-
-}
-}
-@media (min-width: 850px) and (max-width: 900px) {
   .tekstboks {
  align-self: center;
  margin-top: 7rem;
 
 }
 }
-@media (min-width: 800px) and (max-width: 850px) {
+@media (min-width: 900px) and (max-width: 1000px) {
   .tekstboks {
  align-self: center;
  margin-top: 6rem;
+
+}
+}
+@media (min-width: 850px) and (max-width: 900px) {
+  .tekstboks {
+ align-self: center;
+ margin-top: 5rem;
+
+}
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  .tekstboks {
+ align-self: center;
+ margin-top: 4rem;
 
 }
 }

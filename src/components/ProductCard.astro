@@ -1,0 +1,28 @@
+---
+const { data } = Astro.props;
+---
+
+<div>
+    <p><a href=`/products/${data.slug}`><img src={data.Image} alt=`Image of ${data.Albumtitel}` /></a></p>
+    <h3>{data.Albumtitel}</h3>
+    <p class="kategori">{data.Kategori.join(", ")}</p>
+    <p class="kunstner">{data.Kunstner}</p>
+    <p>{data.Pris} kr</p>
+</div>
+
+<style>
+  h3{
+    margin-top: 1rem;
+  }
+  article {
+    padding-bottom: 1rem;
+  }
+  a {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+a:hover {
+  transform: scale(1.1);
+}
+</style>
