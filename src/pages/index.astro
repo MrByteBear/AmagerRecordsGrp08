@@ -1,6 +1,27 @@
 ---
 import "../styles/globalStyle.css";
 import Layout from "../layouts/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+
+const url = "https://gxmdglbibfpiwogwemde.supabase.co/rest/v1/Shop";
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4bWRnbGJpYmZwaXdvZ3dlbWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMzEyMzIsImV4cCI6MjA2MjcwNzIzMn0.BvX0BmkEeCJXM87A6rCzVi7tqiTnfB--7qAfPqe6UT0";
+
+const options = {
+  headers: {
+    apikey: key,
+  },
+};
+const request = await fetch(url, options);
+const data = await request.json();
+
+const selectedIds = [1, 8, 7, 10];
+
+const udvalgteAlbums = data.filter((album) =>
+  selectedIds.includes(album.id)
+);
+
+
+console.log("data", data);
 ---
 <Layout title="Tester Title">
 	<img src="/img/Headerforside.png" alt="3223">
@@ -46,38 +67,22 @@ import Layout from "../layouts/Layout.astro";
 <h1 class="udvalgte">Udvalgte plader</h1>
 
 <div class="pladergrid">
-	<div>
-		<img src="/img/cc.png" alt="232">
-		<p class="album">Bloody Tourist</p>
-		<p class="kategori">LP, Album, Gat</p>
-		<p class="kunstner">10cc</p>
-		<p class="pris">135 kr</p>
+	
+		
+		  
+			<!-- {
+			  data.map((Albumtitel) => {
+				return <ProductCard data={Albumtitel} />;
+			  })
+			} -->
 
-	</div>
-	<div>
-		<img src="/img/cc.png" alt="232">
-		<p class="album">Bloody Tourist</p>
-		<p class="kategori">LP, Album, Gat</p>
-		<p class="kunstner">10cc</p>
-		<p class="pris">150 kr</p>
-
-	</div>
-	<div>
-		<img src="/img/cc.png" alt="232">
-		<p class="album">Bloody Tourist</p>
-		<p class="kategori">LP, Album, Gat</p>
-		<p class="kunstner">10cc</p>
-		<p class="pris">150 kr</p>
-
-	</div>
-	<div>
-		<img src="/img/cc.png" alt="232">
-		<p class="album">Bloody Tourist</p>
-		<p class="kategori">LP, Album, Gat</p>
-		<p class="kunstner">10cc</p>
-		<p class="pris">695 kr</p>
-
-	</div>
+{
+	udvalgteAlbums.map((album) => {
+	  return <ProductCard data={album} />;
+	})
+  }
+		  
+	
 </div>
 <style>
 * {
@@ -110,7 +115,17 @@ img {
 .vinylunivers img {
   max-width: 70px;
   margin: auto;
+  display: block;
+  transition: transform 0.3s ease;
 }
+
+
+.vinylunivers img:hover {
+  transform: scale(1.1);
+}
+
+
+
 .plader{
 max-width: 500px;
 margin: auto;
@@ -137,6 +152,13 @@ background-color: #CFDBF1;
 .livemusik img {
   max-width: 70px;
   margin: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+
+.livemusik img:hover {
+  transform: scale(1.1);
 }
 .pladergrid{
 	display: grid;
