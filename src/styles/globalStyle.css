@@ -233,12 +233,12 @@ button:hover {
 
 /* Bruges ifm. JS, viser indhold når det er i dens aktiveret state når man bruger classList.toggle */
 .toggleable.active {
-  display: block;
+  display: block!important;
 }
 
 /* Bruges ifm. JS, skjuler indhold */
 .showElement {
-  display: block;
+  display: block!important;
 }
 
 /* Bruges ifm. JS, viser indhold */

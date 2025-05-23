@@ -1,0 +1,112 @@
+---
+const { heroImage, showElement } = Astro.props;
+---
+
+<header>
+  <nav>
+    <div class="navContainer">
+      <div class="navLeft">
+        
+      </div>
+      <div class="navDeskLeft">
+        <a href="/about.html">Om os</a>
+        <a href="/events.html">Events</a>
+      </div>
+      <a href="/index.html" class="logoContainer"><img src="/images/logoFull.webp" alt="Logo" /></a>
+      <div class="navRight">
+
+      </div>
+      <div class="navDeskRight">
+        <a href="/productlist.astro">Shop</a>
+        <i class="searchIcon"></i>
+      </div>
+    </div>
+  </nav>
+  <img src={heroImage} alt="Hero Image" class={`heroContainer hideElement ${showElement}`} />
+</header>
+
+<style>
+  /*********    Container Stylings    ***********/
+  header {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  nav {
+    width: 100%;
+    background-color: var(--color-secondary);
+  }
+  .navContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    max-width: 1440px;
+    padding: 0.5rem 2rem;
+    gap: var(--space-md);
+    margin: 0 auto;
+  }
+  /*********    IMG + SVG Stylings    ***********/
+  .searchIcon {
+    background-image: url("/images/svgs/searchIcon.svg");
+    width: 24px;
+    height: 24px;
+  }
+  .heroContainer {
+    width: 100%;
+  }
+  /*********    Text Stylings    ***********/
+
+  /* (DESKTOP)
+
+
+    .searchIcon {
+    background-image: url("/images/svgs/searchIcon.svg");
+    width: 24px;
+    height: 24px;
+  }
+  header {
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  .logoContainer {
+    justify-self: center
+  }
+  nav {
+    width: 100%;
+    background-color: var(--color-secondary);
+  }
+  .navContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    max-width: 1440px;
+    padding: 0.5rem 2rem;
+    gap: var(--space-md);
+    margin: 0 auto;
+  }
+  .heroContainer {
+    width: 100%;
+  }
+  .navDeskLeft a, .navDeskRight a {
+    font-size: var(--fs-md);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .navDeskLeft a:not(:last-child), .navDeskRight a:not(:last-child) {
+    margin-right: 2rem;
+  }
+  .navDeskLeft {
+    justify-self: start;
+  }
+  .navDeskRight {
+    justify-self: end;
+  }
+  */
+</style>
+
+<script defer>
+  
+</script>
