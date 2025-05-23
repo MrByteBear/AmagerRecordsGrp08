@@ -180,8 +180,6 @@ body {
 main {
   overflow-y: auto;
   flex: 1;
-  padding: 1rem;
-  background-color: var(--color-primary);
 }
 
 /* Gør så Headings og Body-tekst kan skrympes, hvis vindue-størrelsen ændres på, så det ikke "forsvinder" */
@@ -205,7 +203,7 @@ h1, h2 {
 }
 
 /* Body + andet tekst Font Family*/
-h3, h4, h5, h6, p, a, li {
+h3, h4, h5, h6, p, a, li, dd, dt {
   font-family: var(--font-family-serif);
 }
 

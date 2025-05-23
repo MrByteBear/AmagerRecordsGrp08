@@ -1,0 +1,65 @@
+---
+const { reverse } = Astro.props;
+---
+
+<article class="productBanner">
+  <div class={`cardContainer ${reverse}`}>
+    <div class="productInfo">
+      <p class="cardName" id="prodName">Lorem</p>
+      <div class="cardCategories">
+        <p class="cardCat" id="prodCat">Ipsum, Dolor</p>
+        <p class="cardSubCat" id="prodSubCat">Sit-Amet-Z</p>
+      </div>
+      <p class="cardPrice" id="prodPrice">69,69 Kr</p>
+    </div>
+    <div class="cardImgContainer">
+      <a href="" id="productLink"><img src="/images/Nevermind.png" alt="Product Image" class="cardImg" id="prodImg" /></a>
+      <div class="cardStock" id="prodStock">
+        <p class="cardStatus">Sold Out</p>
+      </div>
+    </div>
+  </div>
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam consequatur sunt perspiciatis iste, officiis repellat nulla inventore ipsa, cumque quod expedita quaerat soluta fugit consequuntur vitae reprehenderit rerum eligendi minima?</p>
+</article>
+
+<style>
+  /*********    Container Styling    ***********/
+  .productBanner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: var(--color-secondary);
+    padding: 2rem;
+    gap: 2rem;
+    margin: 1rem 0rem;
+  }
+  .cardContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .cardCategories {
+    margin: 0.5rem 0;
+  }
+  /*********    Text Styling    ***********/
+  /*********    Flexbox Styling    ***********/
+  .flex_col {
+    display: flex;
+    flex-direction: column;
+  }
+  /*********    Image Styling    ***********/
+  .cardImg {
+    width: 140px;
+    height: 140px;
+  }
+
+  /*********    Misc/Temp Styling    ***********/
+  .cardStock {
+    display: none;
+  }
+  .reverse {
+    flex-flow: row-reverse;
+  }
+</style>

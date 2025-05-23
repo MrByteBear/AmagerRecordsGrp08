@@ -1,0 +1,119 @@
+---
+
+---
+
+<footer>
+  <div class="footerContainer">
+    <div class="textContainer">
+      <dl>
+        <dt>Adresse:</dt>
+        <dd>Amagerbrogade 135, 2300 København S</dd>
+        <dt>Email:</dt>
+        <dd>info@amagerrecords.dk</dd>
+        <dt>Tlf:</dt>
+        <dd>+45 53 53 23 00</dd>
+        <dt>CVR:</dt>
+        <dd>38826492</dd>
+      </dl>
+    </div>
+    <div class="flex_col_center">
+      <img src="/images/logo.webp" alt="logo" />
+      <div class="socialContainer">
+        <a href="https://www.facebook.com/amagerrecords" target="_blank" aria-label="Facebook Link"><i class="facebookIcon"></i></a>
+        <a href="https://www.instagram.com/amagerrecords/" target="_blank" aria-label="Instagram Link"><i class="instagramIcon"></i></a>
+        <a href="https://www.youtube.com/@amagerrecords" target="_blank" aria-label="Youtube Link"><i class="youtubeIcon"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /*********    Container Stylings    ***********/
+
+  footer {
+    background-color: var(--color-secondary);
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    bottom: 0;
+    left: 0;
+  }
+  .footerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    padding: 2rem 1rem;
+    gap: var(--space-md);
+    margin: 0 auto;
+  }
+  .socialContainer {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  /*********    Text Stylings    ***********/
+
+  dt,
+  dd {
+    color: var(--color-tertiary);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+  }
+  dt {
+    margin-bottom: 0.125rem;
+  }
+  dd:not(:last-child) {
+    margin-bottom: var(--space-sm);
+  }
+  dd:first-of-type {
+    max-width: 19ch;
+  }
+
+  /*********    Image + Icon Stylings    ***********/
+  img {
+    width: clamp(8.75rem, 7.5rem + 5.556vw, 12.5rem);
+  }
+  i {
+    cursor: pointer;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .facebookIcon,
+  .instagramIcon,
+  .youtubeIcon {
+    width: clamp(2.813rem, 2.396rem + 1.852vw, 4.063rem);
+    height: clamp(2.813rem, 2.396rem + 1.852vw, 4.063rem);
+
+  }
+  .facebookIcon {
+    background-image: url("/images/svgs/logo-facebook.svg");
+  }
+  .instagramIcon {
+    background-image: url("/images/svgs/logo-instagram.svg");
+  }
+  .youtubeIcon {
+    background-image: url("/images/svgs/logo-youtube.svg");
+  }
+
+  /*********    Flexbox Stylings    ***********/
+
+  .flex_col_center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+   /*********    Media Queries    ***********/
+   @media screen and (min-width: 500px) { 
+    .footerContainer {
+      padding: 2rem;
+    }
+    dd, dt {
+      font-size: var(--fs-base);
+    }
+   }
+</style>
