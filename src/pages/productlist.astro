@@ -1,33 +1,52 @@
 ---
 import "../styles/globalStyle.css";
 import Layout from "../layouts/Layout.astro";
-import ProductCard from "../components/ProductCardALT.astro";
-import ProductBanner from "../components/ProductBannerALT.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ProductBanner from "../components/ProductBanner.astro";
+
+const url = "https://gxmdglbibfpiwogwemde.supabase.co/rest/v1/Shop";
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4bWRnbGJpYmZwaXdvZ3dlbWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMzEyMzIsImV4cCI6MjA2MjcwNzIzMn0.BvX0BmkEeCJXM87A6rCzVi7tqiTnfB--7qAfPqe6UT0";
+
+const options = {
+  headers: {
+    apikey: key,
+  },
+};
+const request = await fetch(url, options);
+const data = await request.json();
+
+const section1ID = [1, 2, 3, 4, 5, 6, 7, 8];
+
+const section1Albums = data.filter((album) => section1ID.includes(album.id));
+
+const section2ID = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+const section2Albums = data.filter((album) => section2ID.includes(album.id));
+
+const section3ID = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+const section3Albums = data.filter((album) => section2ID.includes(album.id));
+
+console.log("data", data);
 ---
 
 <Layout title="Tester Title">
   <h1>Hello World</h1>
   <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt est et lobortis interdum. Sed nisi lacus, sed viverra tellus in hac habitasse platea dictumst.</p>
   <section>
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
+    {
+      section1Albums.map((album) => {
+        return <ProductCard data={album} />;
+      })
+    }
   </section>
   <ProductBanner />
   <section>
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
+        {
+      section2Albums.map((album) => {
+        return <ProductCard data={album} />;
+      })
+    }
   </section>
   <ProductBanner reverse="reverse" />
 </Layout>
@@ -35,12 +54,22 @@ import ProductBanner from "../components/ProductBannerALT.astro";
 <style>
   /*********    Container Stylings    ***********/
   section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-md);
-    justify-content: space-between;
-    padding: 0rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    justify-items: center;
   }
+
+  @media screen and (min-width: 800px) {
+    section {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+
   :global(main) {
     padding: 1rem 0rem;
   }

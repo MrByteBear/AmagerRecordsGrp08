@@ -5,17 +5,13 @@ const { heroImage, showElement } = Astro.props;
 <header>
   <nav>
     <div class="navContainer">
-      <div class="navLeft">
-        
-      </div>
+      <div class="navLeft"></div>
       <div class="navDeskLeft">
         <a href="/about.html">Om os</a>
         <a href="/events.html">Events</a>
       </div>
       <a href="/index.html" class="logoContainer"><img src="/images/logoFull.webp" alt="Logo" /></a>
-      <div class="navRight">
-
-      </div>
+      <div class="navRight"></div>
       <div class="navDeskRight">
         <a href="/productlist.astro">Shop</a>
         <i class="searchIcon"></i>
@@ -108,5 +104,30 @@ const { heroImage, showElement } = Astro.props;
 </style>
 
 <script defer>
-  
+  document.addEventListener("DOMContentLoaded", () => {
+    const headerNavMobile = document.querySelector(".headerNavMobile");
+    const burgerMenu = document.querySelector(".burgerMenu");
+    const burgerMenuIcon = document.querySelector("#burgerBtn");
+    // Toggle burger and headerNav on click
+    burgerMenu.addEventListener("click", burgerClick);
+    function burgerClick() {
+      burgerMenuIcon.classList.toggle("active");
+      headerNavMobile.classList.toggle("active");
+    }
+
+    // Close burger and headerNav when a menu item is clicked
+    headerNavMobile.addEventListener("click", navMobileLinksClick);
+    function navMobileLinksClick() {
+      burgerMenuIcon.classList.remove("active");
+      headerNavMobile.classList.remove("active");
+    }
+
+    // Reset the burger and headerNav state when resizing to desktop view
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 800) {
+        burgerMenuIcon.classList.remove("active");
+        headerNavMobile.classList.remove("active");
+      }
+    });
+  });
 </script>
