@@ -27,7 +27,7 @@ const { item } = Astro.props;
 
 ---
 <Layout title={`${item.Albumtitel}`}>
-  <h1>{item.Albumtitel}- {item.Kunstner}</h1>
+  <h1>{item.Albumtitel} - {item.Kunstner}</h1>
   <div class="gridstorskaerm">
     <div class="overskriftogbillede">
   <img src={item.Image} alt=`Image of ${item.Albumtitel}` />
@@ -57,13 +57,16 @@ const { item } = Astro.props;
 </Layout>
 
 <style>
-
+.gridstorskaerm{
+  margin-top: 1rem;
+  margin-bottom: 7rem;
+}
 
 .tekstboks {
   background-color: #CFDBF1;
-  padding: 2rem 3rem;
-  margin: 2rem auto;     
-  max-width: 550px;          
+  padding: 4rem 3rem;
+  margin: 4rem auto;     
+  max-width: 450px; 
 }
 
 .prisogvogn{
@@ -74,13 +77,18 @@ const { item } = Astro.props;
 a{
   background-color: black;
   color: white;
-  margin-top: 2rem;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  margin-top: 3rem;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  font-size: 1.3rem;
+  font-size: var(--fs-lg);
   cursor: pointer;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+a:hover {
+  transform: scale(1.05);
 }
 .pris{
   margin-bottom: 1rem;
@@ -88,46 +96,69 @@ a{
 
 .info-rækker {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 img{
   justify-self: center;
-  width: 500px;
+  /* width: 500px; */
+width: 100%;
+height: auto;
   margin-top: 1rem;
+ padding-left: 2rem;
+ padding-right: 2rem;
 }
 
 
 h1{
   justify-self: center;
-  max-width: 800px;
-
+  /* max-width: 500px; */
+  margin-left: 2rem;
+  margin-right: 2rem;
+margin-top: 7rem;
+font-size: var(--fs-2xl);
 }
 p{
-  font-size: 1.3rem;
+  font-size: var(--fs-lg);
+margin-bottom: 1.5rem;
 }
 
 @media (min-width: 800px) {
+a{
+  margin-left: -2rem;
+  margin-right: -2rem;
+}
   .gridstorskaerm{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    margin-left: 3rem;
   }
   
   img{
-    width: 100%;
-  }
+  justify-self: center;
+  /* width: 500px; */
+width: 100%;
+height: auto;
+margin-top: 1rem;
+ padding-left: 1.6rem;
+ padding-right: 2rem;
+
+}
   h1{
     justify-self: left;
     max-width: 1000px;
+    padding-left: 2.6rem;
   }
-.tekstboks {
- align-self: center;
- margin-top: 18rem;
-
+  .tekstboks {
+  background-color: #CFDBF1;
+  padding: 4rem 3rem;
+  margin-bottom: 4rem; 
+  margin-right: 4.5rem;
+  max-width: 600px; 
 }
 .info-rækker {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 }

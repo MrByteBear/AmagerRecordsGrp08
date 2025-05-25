@@ -7,42 +7,124 @@ import Layout from "../layouts/Layout.astro";
   <img src="/img/event_top_billede.png" alt="" />
   <div class="top">
     <h1>Events, koncerter og god stemning</h1>
-    <p>Hos Amager Records er butikken meget mere end bare en pladeforretning. Vi elsker at skabe liv og lyd omkring musikken, og derfor afholder vi løbende små, intime events – lige fra akustiske koncerter og DJ-aftener til pladebørser, releasefester og spontane pop-up arrangementer.</p>
+    <p>Hos Amager Records er butikken <strong>meget mere end bare en pladeforretning.</strong> Vi elsker at skabe liv og lyd omkring musikken, og derfor afholder vi løbende små, intime events – lige fra <strong>akustiske koncerter og DJ-aftener</strong> til <strong>pladebørser, releasefester og spontane pop-up arrangementer.</strong></p>
+    <a href="https://www.place2book.com/da/sw2/sales/event_list/EM11444">Se kalender</a>
   </div>
   <div class="midt">
+    <img src="/img/event_midt_billede.png" alt="" />
     <div class="midt_text">
       <h1>Direkte fra hjertet af Amager</h1>
-      <p>Det er de dage og aftener, hvor vinylerne snurrer, folk samles over en øl eller en kop kaffe, og der opstår noget særligt mellem musikere, gæster og nysgerrige sjæle.</p>
-      <p>Uanset om du er stamgæst eller førstegangsbesøgende, er du altid velkommen.</p>
+      <p>Det er de dage og aftener, hvor vinylerne snurrer, folk samles over en øl eller en kop kaffe, og der opstår noget særligt mellem musikere, gæster og nysgerrige sjæle. Uanset om du er stamgæst eller førstegangsbesøgende, <strong>er du altid velkommen.</strong></p>
     </div>
-    <img src="/img/event_midt_billede.png" alt="" />
   </div>
 
   <div class="bund">
     <img src="/img/event_bund_billede.png" alt="" />
-
     <div class="bund_text">
-      <h1>Direkte fra hjertet af Amager</h1>
-      <p>Det er de dage og aftener, hvor vinylerne snurrer, folk samles over en øl eller en kop kaffe, og der opstår noget særligt mellem musikere, gæster og nysgerrige sjæle.</p>
-      <p>Uanset om du er stamgæst eller førstegangsbesøgende, er du altid velkommen.</p>
+      <h1>Vil du vide, hvad der sker næste gang?</h1>
+      <p>Så husk at følge os på <strong>[Instagram] og [Facebook].</strong> Her deler vi alle vores kommende events, stemningsbilleder fra butikken og masser af musiknørderi fra hverdagen hos Amager Records. Det er også her, du får de første glimt af <strong>nye plader i butikken</strong> – og måske en invitation til næste koncert i baglokalet.</p>
     </div>
   </div>
 
   <style>
+    .top p{
+      margin-bottom: 2rem;
+    }
+    a {
+  background-color: black;
+  color: white;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: var(--fs-md);
+  cursor: pointer;
+  display: inline-block; 
+  transition: transform 0.2s ease; 
+}
+
+a:hover {
+  transform: scale(1.05);
+}
+
+    .midt{
+      margin-left: 2rem;
+      margin-right: 2rem;
+      margin-bottom: 10rem;
+
+    }
+    .bund{
+      margin-left: 2rem;
+      margin-right: 2rem;
+      margin-bottom: 10rem;
+    }
+  
     .top {
       text-align: center;
+      max-width: 1000px;
+      justify-self: center;
+      margin-top: 2rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      margin-bottom: 8rem;
+    }
+    h1{
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    img{
+      width: 100%;
     }
 
     @media (min-width: 800px) {
       .midt {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 2rem;
       }
-
+      .midt_text{
+        grid-column: 1 / 2;
+        grid-row: 1/2;
+        margin-top: 25%;
+      }
       .bund {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 2rem;
       }
+    .bund_text{
+      margin-top: 28%;
     }
+
+      
+    }
+    @media (min-width: 1080px) and (max-width: 1250px) {
+      .midt_text{
+        margin-top: 20%;
+      }
+    .bund_text{
+      margin-top: ;
+    }
+    .bund_text{
+      margin-top: 22%;
+    }
+
+}
+@media (min-width: 900px) and (max-width: 1080px) {
+      .midt_text{
+        margin-top: 10%;
+      }
+      .bund_text{
+      margin-top: 16%;
+    }
+}
+@media (min-width: 800px) and (max-width: 900px) {
+      .midt_text{
+        margin-top: -1%;
+      }
+      .bund_text{
+      margin-top: -1%;
+    }
+}
   </style>
 </Layout>
