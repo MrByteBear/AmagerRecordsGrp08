@@ -64,6 +64,10 @@ const { reverse, data, description } = Astro.props;
     font-size: var(--fs-base);
   }
 
+  .cardDesktop {
+    display: none;
+  }
+
   @media screen and (min-width: 800px) {
     .cardDesktop {
       display: grid;
