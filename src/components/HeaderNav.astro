@@ -18,7 +18,7 @@ import SearchBar from "../components/SearchBar.astro";
       <a href="/index.html" class="logoContainer"><img src="/images/logoFull.webp" alt="Logo" /></a>
       <div class="navRight">
         <a href="/productlist.html" class="hideElement">Shop</a>
-        <SearchBar variant="navbar"/>
+        <SearchBar/>
       </div>
   </nav>
   <img src={heroImage} alt="Hero Image" class={`heroContainer hideElement ${showElement}`} />
@@ -28,11 +28,7 @@ import SearchBar from "../components/SearchBar.astro";
   /*********    Container Stylings    ***********/
   header {
     width: 100%;
-    top: 0;
-    left: 0;
-  }
-  nav {
-
+    background-color: var(--color-secondary);
   }
   nav {
     display: grid;
@@ -119,7 +115,7 @@ import SearchBar from "../components/SearchBar.astro";
     /*********    Text Stylings    ***********/
     .navLeft a:not(:last-child),
     .navRight a:not(:last-child) {
-      margin-right: 2rem;
+      margin-right: 3rem;
     }
     .navLeft a,
     .navRight a {

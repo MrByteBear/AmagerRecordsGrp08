@@ -1,44 +1,36 @@
 ---
-const { variant } = Astro.props;
+
 ---
 
-{variant === "navbar" && (
-  <div class="searchGroup">
+<div class="searchGroup">
   <i class="searchIcon"></i>
-  <form class="searchContainerNav" id="searchContainerNav" method="GET">
+  <form class="searchContainer" id="searchContainer" method="GET">
     <input type="text" id="searchInput" placeholder="Eksempel: 'LP'" aria-label="Search" />
     <button type="submit" id="searchBtn">Søg</button>
   </form>
 </div>
-)}
-{variant === "filter" && (
-  <form class="searchContainerFilter" id="searchContainerFilter" method="GET">
-    <input type="text" id="searchInput" placeholder="Eksempel: 'LP'" aria-label="Search" />
-    <button type="submit" id="searchBtn">Søg</button>
-  </form>
-)}
 
 <style>
   /*********    Nav Search Stylings    ***********/
-  .searchContainerNav {
+  .searchContainer {
     display: none;
   }
-  .searchContainerNav.active {
+  .searchContainer.active {
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -5%;
+    right: 150%;
   }
-  .searchContainerNav input {
+  .searchContainer input {
     width: 150px;
     height: 40px;
     padding: 0.5rem;
     background-color: var(--color-primary);
     border: 2px solid var(--color-text-primary);
   }
-  .searchContainerNav button {
+  .searchContainer button {
     cursor: pointer;
     width: 50px;
     height: 40px;
@@ -58,38 +50,12 @@ const { variant } = Astro.props;
   .searchGroup {
     position: relative;
   }
-  /*********    Filter Search Stylings    ***********/
-  .searchContainerFilter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .searchContainerFilter input {
-    width: 150px;
-    height: 40px;
-    padding: 0.5rem;
-    background-color: var(--color-primary);
-    border: 2px solid var(--color-text-primary);
-  }
-  .searchContainerFilter button {
-    cursor: pointer;
-    width: 50px;
-    height: 40px;
-    background-color: var(--color-text-primary);
-    color: var(--color-primary);
-    font-family: var(--font-family-serif);
-    font-size: var(--fs-sm);
-    text-transform: uppercase;
-    font-weight: bold;
-  }
 </style>
 
 <script defer>
   document.addEventListener("DOMContentLoaded", () => {
-    const searchForm = document.getElementById("searchContainerNav");
-    const searchFormFilter = document.getElementById("searchContainerFilter");
+    const searchForm = document.getElementById("searchContainer");
     const searchInput = document.getElementById("searchInput");
-    const searchButton = document.getElementById("searchBtn");
 
     const searchIcon = document.querySelector(".searchIcon");
 
@@ -104,21 +70,10 @@ const { variant } = Astro.props;
         hideSearchBar();
       }
     });
-    
-    /* Optionally add contents into above ^ */
+
     function hideSearchBar() {
       searchForm.classList.remove("active");
       searchInput.value = "";
-    }
-
-    searchForm.addEventListener("submit", searchEvent);
-    if (searchFormFilter) {searchFormFilter.addEventListener("submit", searchEvent); }
-    function searchEvent (event) {
-      event.preventDefault();
-      const query = searchInput.value.trim();
-      if (query) {
-        window.location.href = `/productlist?search=${encodeURIComponent(query)}`;
-      }
     }
   });
 </script>
