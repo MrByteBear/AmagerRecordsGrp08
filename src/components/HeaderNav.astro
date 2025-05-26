@@ -73,6 +73,11 @@ import SearchBar from "../components/SearchBar.astro";
     max-width: unset;
     width: clamp(8.125rem, 5.625rem + 11.111vw, 15.625rem);
   }
+
+  .logoContainer img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
   /*********    Button Stylings    ***********/
   .burgerBtn,
   .burgerBtn.active {
@@ -101,6 +106,7 @@ import SearchBar from "../components/SearchBar.astro";
   .navLeft a:hover,
   .navRight a:hover {
     transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
 
   .burgerMenu a {
@@ -158,6 +164,6 @@ import SearchBar from "../components/SearchBar.astro";
         burgerMenu.classList.remove("active");
       }
     });
-    
+
   });
 </script>
