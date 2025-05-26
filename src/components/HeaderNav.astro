@@ -5,21 +5,21 @@ import SearchBar from "../components/SearchBar.astro";
 
 <header>
   <nav>
-      <i class="burgerBtn"></i>
-      <div class="burgerMenu hideElement">
-        <a href="/about.html">Om os</a>
-        <a href="/events.html">Events</a>
-        <a href="/productlist.html">Shop</a>
-      </div>
-      <div class="navLeft hideElement">
-        <a href="/about.html">Om os</a>
-        <a href="/events.html">Events</a>
-      </div>
-      <a href="/index.html" class="logoContainer"><img src="/images/logoFull.webp" alt="Logo" /></a>
-      <div class="navRight">
-        <a href="/productlist.html" class="hideElement">Shop</a>
-        <SearchBar/>
-      </div>
+    <i class="burgerBtn"></i>
+    <div class="burgerMenu hideElement">
+      <a href="/about.html">Om os</a>
+      <a href="/events.html">Events</a>
+      <a href="/productlist.html">Shop</a>
+    </div>
+    <div class="navLeft hideElement">
+      <a href="/about.html">Om os</a>
+      <a href="/events.html">Events</a>
+    </div>
+    <a href="/index.html" class="logoContainer"><img src="/images/logoFull.webp" alt="Logo" /></a>
+    <div class="navRight">
+      <a href="/productlist.html" class="hideElement">Shop</a>
+      <SearchBar />
+    </div>
   </nav>
   <img src={heroImage} alt="Hero Image" class={`heroContainer hideElement ${showElement}`} />
 </header>
@@ -97,6 +97,11 @@ import SearchBar from "../components/SearchBar.astro";
     font-weight: bold;
     text-transform: uppercase;
   }
+  .burgerMenu a:hover,
+  .navLeft a:hover,
+  .navRight a:hover {
+    transform: scale(1.1);
+  }
 
   .burgerMenu a {
     padding: 0.5rem 0rem;
@@ -153,5 +158,6 @@ import SearchBar from "../components/SearchBar.astro";
         burgerMenu.classList.remove("active");
       }
     });
+    
   });
 </script>

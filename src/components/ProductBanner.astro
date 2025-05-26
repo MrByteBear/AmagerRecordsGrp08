@@ -56,8 +56,13 @@ const { reverse, data, description } = Astro.props;
   }
   /*********    Image Styling    ***********/
   .cardImg {
-    width: 140px;
-    height: 140px;
+    width: clamp(8.75rem, -0.833rem + 42.593vw, 37.5rem);
+    height: clamp(8.75rem, -0.833rem + 42.593vw, 37.5rem);
+  }
+
+  .cardImg:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
   }
 
   .productBanner p {
@@ -82,14 +87,9 @@ const { reverse, data, description } = Astro.props;
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      height: 70%;
     }
     .cardDescription {
       margin-top: 0;
-    }
-    .cardImg {
-      width: 600px;
-      height: 600px;
     }
     .cardDesktop a {
       width: fit-content;
