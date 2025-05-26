@@ -1,8 +1,8 @@
 ---
-const { reverse } = Astro.props;
+const { id, reverse } = Astro.props;
 ---
 
-<article class="productBanner">
+<article class="productBanner" id={id}>
   <div class={`cardContainer ${reverse}`}>
     <div class="productInfo">
       <p class="cardName" id="prodName">Lorem</p>

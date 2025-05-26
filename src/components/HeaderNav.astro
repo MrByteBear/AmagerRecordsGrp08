@@ -1,22 +1,25 @@
 ---
 const { heroImage, showElement } = Astro.props;
+import SearchBar from "../components/SearchBar.astro";
 ---
 
 <header>
   <nav>
-    <div class="navContainer">
-      <div class="navLeft"></div>
-      <div class="navDeskLeft">
+      <i class="burgerBtn"></i>
+      <div class="burgerMenu hideElement">
+        <a href="/about.html">Om os</a>
+        <a href="/events.html">Events</a>
+        <a href="/productlist.html">Shop</a>
+      </div>
+      <div class="navLeft hideElement">
         <a href="/about.html">Om os</a>
         <a href="/events.html">Events</a>
       </div>
       <a href="/index.html" class="logoContainer"><img src="/images/logoFull.webp" alt="Logo" /></a>
-      <div class="navRight"></div>
-      <div class="navDeskRight">
-        <a href="/productlist.astro">Shop</a>
-        <i class="searchIcon"></i>
+      <div class="navRight">
+        <a href="/productlist.html" class="hideElement">Shop</a>
+        <SearchBar variant="navbar"/>
       </div>
-    </div>
   </nav>
   <img src={heroImage} alt="Hero Image" class={`heroContainer hideElement ${showElement}`} />
 </header>
@@ -24,16 +27,14 @@ const { heroImage, showElement } = Astro.props;
 <style>
   /*********    Container Stylings    ***********/
   header {
-    position: relative;
     width: 100%;
     top: 0;
     left: 0;
   }
   nav {
-    width: 100%;
-    background-color: var(--color-secondary);
+
   }
-  .navContainer {
+  nav {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
@@ -41,92 +42,119 @@ const { heroImage, showElement } = Astro.props;
     padding: 0.5rem 2rem;
     gap: var(--space-md);
     margin: 0 auto;
-  }
-  /*********    IMG + SVG Stylings    ***********/
-  .searchIcon {
-    background-image: url("/images/svgs/searchIcon.svg");
-    width: 24px;
-    height: 24px;
+    width: 100%;
+    background-color: var(--color-secondary);
+    position: relative;
   }
   .heroContainer {
     width: 100%;
   }
-  /*********    Text Stylings    ***********/
-
-  /* (DESKTOP)
-
-
-    .searchIcon {
-    background-image: url("/images/svgs/searchIcon.svg");
-    width: 24px;
-    height: 24px;
+  .burgerMenu {
+    display: none;
   }
-  header {
-    position: relative;
-    width: 100%;
-    top: 0;
+  .burgerMenu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
     left: 0;
+    width: 100%;
+    background-color: var(--color-secondary);
+    padding: 1rem;
+    gap: var(--space-md);
+    border-top: 1px solid var(--color-primary);
+    z-index: 500;
+    text-align: center;
+  }
+  .navRight {
+    justify-self: end;
   }
   .logoContainer {
-    justify-self: center
+    justify-self: center;
   }
-  nav {
-    width: 100%;
-    background-color: var(--color-secondary);
+  /*********    IMG + SVG Stylings    ***********/
+  .logoContainer img {
+    max-width: unset;
+    width: clamp(8.125rem, 5.625rem + 11.111vw, 15.625rem);
   }
-  .navContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    max-width: 1440px;
-    padding: 0.5rem 2rem;
-    gap: var(--space-md);
-    margin: 0 auto;
+  /*********    Button Stylings    ***********/
+  .burgerBtn,
+  .burgerBtn.active {
+    cursor: pointer;
+    justify-self: start;
   }
-  .heroContainer {
-    width: 100%;
+  .burgerBtn {
+    background-image: url("/images/svgs/burgerOpen.svg");
+    width: 30px;
+    height: 30px;
   }
-  .navDeskLeft a, .navDeskRight a {
-    font-size: var(--fs-md);
+  .burgerBtn.active {
+    background-image: url("/images/svgs/burgerClosed.svg");
+    width: 30px;
+    height: 30px;
+  }
+  /*********    Text Stylings    ***********/
+  .burgerMenu a,
+  .navLeft a,
+  .navRight a {
+    font-size: var(--fs-base);
     font-weight: bold;
     text-transform: uppercase;
   }
-  .navDeskLeft a:not(:last-child), .navDeskRight a:not(:last-child) {
-    margin-right: 2rem;
+
+  .burgerMenu a {
+    padding: 0.5rem 0rem;
   }
-  .navDeskLeft {
-    justify-self: start;
+
+  @media screen and (min-width: 800px) {
+    /*********    Btn Stylings    ***********/
+    .burgerBtn {
+      display: none;
+    }
+    /*********    Container Stylings    ***********/
+    .navLeft,
+    .navRight {
+      display: flex;
+    }
+    /*********    Text Stylings    ***********/
+    .navLeft a:not(:last-child),
+    .navRight a:not(:last-child) {
+      margin-right: 2rem;
+    }
+    .navLeft a,
+    .navRight a {
+      font-size: var(--fs-md);
+    }
+    .navRight a {
+      display: initial;
+    }
   }
-  .navDeskRight {
-    justify-self: end;
-  }
-  */
+  /*********    Text Stylings    ***********/
 </style>
 
 <script defer>
   document.addEventListener("DOMContentLoaded", () => {
-    const headerNavMobile = document.querySelector(".headerNavMobile");
     const burgerMenu = document.querySelector(".burgerMenu");
-    const burgerMenuIcon = document.querySelector("#burgerBtn");
-    // Toggle burger and headerNav on click
-    burgerMenu.addEventListener("click", burgerClick);
+    const burgerBtn = document.querySelector(".burgerBtn");
+
+    burgerBtn.addEventListener("click", burgerClick);
     function burgerClick() {
-      burgerMenuIcon.classList.toggle("active");
-      headerNavMobile.classList.toggle("active");
+      burgerBtn.classList.toggle("active");
+      burgerMenu.classList.toggle("active");
     }
 
     // Close burger and headerNav when a menu item is clicked
-    headerNavMobile.addEventListener("click", navMobileLinksClick);
-    function navMobileLinksClick() {
-      burgerMenuIcon.classList.remove("active");
-      headerNavMobile.classList.remove("active");
+    burgerMenu.addEventListener("click", burgerMenuClick);
+    function burgerMenuClick() {
+      burgerBtn.classList.remove("active");
+      burgerMenu.classList.remove("active");
     }
 
     // Reset the burger and headerNav state when resizing to desktop view
     window.addEventListener("resize", () => {
       if (window.innerWidth > 800) {
-        burgerMenuIcon.classList.remove("active");
-        headerNavMobile.classList.remove("active");
+        burgerBtn.classList.remove("active");
+        burgerMenu.classList.remove("active");
       }
     });
   });

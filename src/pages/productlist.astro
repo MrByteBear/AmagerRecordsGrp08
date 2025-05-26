@@ -3,6 +3,7 @@ import "../styles/globalStyle.css";
 import Layout from "../layouts/Layout.astro";
 import ProductCard from "../components/ProductCard.astro";
 import ProductBanner from "../components/ProductBanner.astro";
+import SearchBar from "../components/SearchBar.astro";
 
 const url = "https://gxmdglbibfpiwogwemde.supabase.co/rest/v1/Shop";
 const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4bWRnbGJpYmZwaXdvZ3dlbWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMzEyMzIsImV4cCI6MjA2MjcwNzIzMn0.BvX0BmkEeCJXM87A6rCzVi7tqiTnfB--7qAfPqe6UT0";
@@ -15,40 +16,100 @@ const options = {
 const request = await fetch(url, options);
 const data = await request.json();
 
-const section1ID = [1, 2, 3, 4, 5, 6, 7, 8];
+const allItemIDs = data.map((album) => album.id);
+
+function mixArray(array) {
+  let currentIndex = array.length,
+    randomIndex;
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
+const mixedArrays = mixArray([...allItemIDs]);
+const section1ID = mixedArrays.slice(0, 8);
+const section2ID = mixedArrays.slice(8, 20);
+const section3ID = mixedArrays.slice(20, 28);
 
 const section1Albums = data.filter((album) => section1ID.includes(album.id));
-
-const section2ID = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-
 const section2Albums = data.filter((album) => section2ID.includes(album.id));
+const section3Albums = data.filter((album) => section3ID.includes(album.id));
 
-const section3ID = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+const kategoriSet = new Set();
+data.forEach((album) => {
+  if (album.Kategori) {
+    album.Kategori.forEach((kategori) => kategoriSet.add(kategori));
+  }
+});
+const kategoriOptions = Array.from(kategoriSet);
 
-const section3Albums = data.filter((album) => section2ID.includes(album.id));
+const genreSet = new Set();
+data.forEach((album) => {
+  if (album.Genre) {
+    genreSet.add(album.Genre);
+  }
+});
+const genreOptions = Array.from(genreSet);
+
+const search = Astro.url?.searchParams.get("search")?.toLowerCase() || "";
+
+let filteredData = data;
+if (search) {
+  filteredData = data.filter((album) => album.Albumtitel?.toLowerCase().includes(search));
+}
 
 console.log("data", data);
 ---
 
 <Layout title="Tester Title">
-  <h1>Hello World</h1>
-  <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt est et lobortis interdum. Sed nisi lacus, sed viverra tellus in hac habitasse platea dictumst.</p>
-  <section>
+  <div class="filterThings">
+    <select name="Kategori" id="Kategori" class="filterBar">
+      <option value="">Kategori</option>
+      {kategoriOptions.map((kat) => <option value={kat}>{kat}</option>)}
+    </select>
+    <select name="Genre" id="Genre" class="filterBar">
+      <option value="">Genre</option>
+      {genreOptions.map((gen) => <option value={gen}>{gen}</option>)}
+    </select>
+    <SearchBar variant="filter" />
+  </div>
+  <section class="hiddenElement" id="filteredList">
+    {
+      filteredData.map((album) => {
+        return (
+          <div data-kategori={album.Kategori?.join(",")} data-genre={album.Genre}>
+            <ProductCard data={album} />
+          </div>
+        );
+      })
+    }
+  </section>
+  <section id="section1">
     {
       section1Albums.map((album) => {
         return <ProductCard data={album} />;
       })
     }
   </section>
-  <ProductBanner />
-  <section>
-        {
+  <ProductBanner id="banner1" />
+  <section id="section2">
+    {
       section2Albums.map((album) => {
         return <ProductCard data={album} />;
       })
     }
   </section>
-  <ProductBanner reverse="reverse" />
+  <ProductBanner id="banner2" reverse="reverse" />
+  <section id="section3">
+    {
+      section3Albums.map((album) => {
+        return <ProductCard data={album} />;
+      })
+    }
+  </section>
 </Layout>
 
 <style>
@@ -67,10 +128,87 @@ console.log("data", data);
     section {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      max-width: 1920px;
     }
   }
 
   :global(main) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 1rem 0rem;
   }
+  .hiddenElement {
+    display: none;
+  }
 </style>
+
+<script defer>
+  document.addEventListener("DOMContentLoaded", () => {
+    const kategoriSelect = document.getElementById("Kategori");
+    const genreSelect = document.getElementById("Genre");
+    const filteredList = document.getElementById("filteredList");
+    const section1 = document.getElementById("section1");
+    const section2 = document.getElementById("section2");
+    const section3 = document.getElementById("section3");
+    const banner1 = document.getElementById("banner1");
+    const banner2 = document.getElementById("banner2");
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get("search");
+
+    if (searchParam) {
+      filteredList.classList.remove("hiddenElement");
+      section1.classList.add("hiddenElement");
+      section2.classList.add("hiddenElement");
+      section3.classList.add("hiddenElement");
+      if (banner1) {
+        banner1.style.display = "none";
+      }
+      if (banner2) {
+        banner2.style.display = "none";
+      }
+    }
+
+    function filterAlbums() {
+      const selectedKategori = kategoriSelect.value;
+      const selectedGenre = genreSelect.value;
+      const filterActive = selectedKategori || selectedGenre;
+
+      if (filterActive) {
+        filteredList.classList.remove("hiddenElement");
+        section1.classList.add("hiddenElement");
+        section2.classList.add("hiddenElement");
+        section3.classList.add("hiddenElement");
+        if (banner1) {
+          banner1.style.display = "none";
+        }
+        if (banner2) {
+          banner2.style.display = "none";
+        }
+      } else {
+        filteredList.classList.add("hiddenElement");
+        section1.classList.remove("hiddenElement");
+        section2.classList.remove("hiddenElement");
+        section3.classList.remove("hiddenElement");
+        if (banner1) {
+          banner1.style.display = "";
+        }
+        if (banner2) {
+          banner2.style.display = "";
+        }
+      }
+
+      const items = filteredList.querySelectorAll("[data-kategori]");
+      items.forEach((item) => {
+        const itemKategori = item.getAttribute("data-kategori") || "";
+        const itemGenre = item.getAttribute("data-genre") || "";
+        const kategoriMatch = !selectedKategori || itemKategori.includes(selectedKategori);
+        const genreMatch = !selectedGenre || itemGenre === selectedGenre;
+        item.style.display = kategoriMatch && genreMatch ? "initial" : "none";
+      });
+    }
+
+    kategoriSelect.addEventListener("change", filterAlbums);
+    genreSelect.addEventListener("change", filterAlbums);
+  });
+</script>
