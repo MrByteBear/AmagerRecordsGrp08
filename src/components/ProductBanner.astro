@@ -1,49 +1,54 @@
 ---
-const { id, reverse } = Astro.props;
+const { reverse, data, description } = Astro.props;
 ---
 
-<article class="productBanner" id={id}>
-  <div class={`cardContainer ${reverse}`}>
-    <div class="productInfo">
-      <p class="cardName" id="prodName">Lorem</p>
-      <div class="cardCategories">
-        <p class="cardCat" id="prodCat">Ipsum, Dolor</p>
-        <p class="cardSubCat" id="prodSubCat">Sit-Amet-Z</p>
+<article class="productBanner">
+  <div class="cardMobile">
+    <div class="flex">
+      <a href=`/products/${data.slug}`><img src={data.Image} alt=`Image of ${data.Albumtitel}` class="cardImg" /></a>
+      <div class="cardInfo">
+        <h3>{data.Albumtitel}</h3>
+        <p class="kategori">{data.Kategori.join(", ")}</p>
+        <p class="kunstner">{data.Kunstner}</p>
+        <p>{data.Pris} kr</p>
       </div>
-      <p class="cardPrice" id="prodPrice">69,69 Kr</p>
     </div>
-    <div class="cardImgContainer">
-      <a href="" id="productLink"><img src="/images/Nevermind.png" alt="Product Image" class="cardImg" id="prodImg" /></a>
-      <div class="cardStock" id="prodStock">
-        <p class="cardStatus">Sold Out</p>
+    <p class="cardDescription">{description}</p>
+  </div>
+  <div class="cardDesktop">
+    <a href=`/products/${data.slug}`><img src={data.Image} alt=`Image of ${data.Albumtitel}` class="cardImg" /></a>
+    <div class={`cardText ${reverse}`}>
+      <p class="cardDescription">{description}</p>
+      <div class="cardInfo">
+        <h3>{data.Albumtitel}</h3>
+        <p class="kategori">{data.Kategori.join(", ")}</p>
+        <p class="kunstner">{data.Kunstner}</p>
+        <p>{data.Pris} kr</p>
       </div>
     </div>
   </div>
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam consequatur sunt perspiciatis iste, officiis repellat nulla inventore ipsa, cumque quod expedita quaerat soluta fugit consequuntur vitae reprehenderit rerum eligendi minima?</p>
 </article>
 
 <style>
   /*********    Container Styling    ***********/
   .productBanner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
+    max-width: 1600px;
     background-color: var(--color-secondary);
     padding: 2rem;
-    gap: 2rem;
     margin: 1rem 0rem;
   }
-  .cardContainer {
+  .cardMobile .flex {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 100%;
-  }
-  .cardCategories {
-    margin: 0.5rem 0;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    gap: 2rem;
   }
   /*********    Text Styling    ***********/
+  .cardDescription {
+    margin-top: 2rem;
+  }
   /*********    Flexbox Styling    ***********/
   .flex_col {
     display: flex;
@@ -55,11 +60,39 @@ const { id, reverse } = Astro.props;
     height: 140px;
   }
 
-  /*********    Misc/Temp Styling    ***********/
-  .cardStock {
-    display: none;
+  .productBanner p {
+    font-size: var(--fs-base);
+  }
+
+  @media screen and (min-width: 800px) {
+    .cardDesktop {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+    .cardMobile {
+      display: none;
+    }
+    .cardText {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      height: 70%;
+    }
+    .cardDescription {
+      margin-top: 0;
+    }
+    .cardImg {
+      width: 600px;
+      height: 600px;
+    }
+    .cardDesktop a {
+      width: fit-content;
+      justify-self: center;
+    }
   }
   .reverse {
-    flex-flow: row-reverse;
+    order: -1;
   }
 </style>
