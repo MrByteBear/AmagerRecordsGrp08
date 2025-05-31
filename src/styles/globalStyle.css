@@ -20,7 +20,7 @@
 /* Vores Variabler */
 :root {
   /* Farver */
-  --color-primary: #FFFFFF; /* Bruges til: Baggrundsfarve */
+  --color-primary: #FDFDFD; /* Bruges til: Baggrundsfarve */
   --color-secondary: #CFDBF1; /* Bruges til: Banner, Footer + Header Navbar */
   --color-tertiary: #BE2026; /* Bruges til: Footer Text Farve */
   --color-text-primary: #000000; /* Bruges til: Text Farve */
