@@ -136,7 +136,6 @@ import SearchBar from "../components/SearchBar.astro";
       display: initial;
     }
   }
-  /*********    Text Stylings    ***********/
 </style>
 
 <script defer>
@@ -150,14 +149,12 @@ import SearchBar from "../components/SearchBar.astro";
       burgerMenu.classList.toggle("active");
     }
 
-    // Close burger and headerNav when a menu item is clicked
     burgerMenu.addEventListener("click", burgerMenuClick);
     function burgerMenuClick() {
       burgerBtn.classList.remove("active");
       burgerMenu.classList.remove("active");
     }
 
-    // Reset the burger and headerNav state when resizing to desktop view
     window.addEventListener("resize", () => {
       if (window.innerWidth > 800) {
         burgerBtn.classList.remove("active");
